@@ -36,7 +36,7 @@ public class ConnectionFactory {
     }
 
     public static void changeRole(Role role) throws SQLException {
-        connection.close();
+        //connection.close();
 
         try (InputStream input = new FileInputStream("src/main/resources/db.properties")) {
             Properties properties = new Properties();
