@@ -17,11 +17,8 @@ public class AgenteController implements Controller {
     @Override
     public void start() {
 
-        try {
             ConnectionFactory.changeRole(Role.AGENTE);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
         System.out.println("Welcome to the Agente Controller!");
 
 
@@ -44,11 +41,18 @@ public class AgenteController implements Controller {
 
     }
 
-    private void visualizzaViaggiDisponibili() {
+    public void visualizzaViaggiDisponibili() {
+        try {
+            new viaggiDisponibiliDAO().execute();
+        } catch (Exception e) {
+            System.out.println("Errore: " + e.getMessage());
+            return;
+        }
+        System.out.println("Viaggi disponibili visualizzati con successo.");
 
     }
 
-    private void cancellaPrenotazione() {
+    public void cancellaPrenotazione() {
 
             System.out.print("Inserisci il codice di disdetta della prenotazione da cancellare: ");
             String codiceDisdetta = input.nextLine();
@@ -64,22 +68,24 @@ public class AgenteController implements Controller {
         }
 
 
-    private void registraPrenotazione() {
-        try {
-            new viaggiDisponibiliDAO().execute();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return;
-        }
+    public void registraPrenotazione() {
+
+      try {
+          new viaggiDisponibiliDAO().execute();
+      } catch (Exception e) {
+           System.out.println(e.getMessage());
+           return;
+      }
         int idViaggio;
         int numeroPasseggeri;
+        String CodiceDisdetta;
         System.out.println("Inserisci l'ID del viaggio: ");
         idViaggio = input.nextInt();
         System.out.println("Inserisci il numero di passeggeri: ");
         numeroPasseggeri = input.nextInt();
         try {
-            String codiceDisdetta = (String) new InserisciPrenotazioneDAO().execute(numeroPasseggeri, idViaggio);
-            System.out.println("Prenotazione inserita con successo! Codice disdetta: " + codiceDisdetta);
+            CodiceDisdetta = (String) new  InserisciPrenotazioneDAO().execute(numeroPasseggeri, idViaggio);
+            System.out.println("Prenotazione inserita con successo! Codice disdetta: " + CodiceDisdetta);
         } catch (DAOException e) {
             System.out.println("Errore: " + e.getMessage());
         } catch (SQLException e) {

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class AgenteView {
 
-    private final Scanner scanner = new Scanner(System.in);
+
 
     public static int mostraMenu() throws IOException {
         System.out.println("╔════════════════════════════════════╗");
@@ -16,12 +16,12 @@ public class AgenteView {
         System.out.println("║ 3. Visualizza viaggi disponibili   ║");
         System.out.println("║ 0. Esci                            ║");
         System.out.println("╚════════════════════════════════════╝");
-        System.out.print("Seleziona un'opzione: ");
+
 
         Scanner input = new Scanner(System.in);
         int choice = 0;
         while (true) {
-            System.out.print("Please enter your choice: ");
+            System.out.print("Seleziona un'opzione: ");
             choice = input.nextInt();
             if (choice >= 0 && choice <= 4) {
                 break;

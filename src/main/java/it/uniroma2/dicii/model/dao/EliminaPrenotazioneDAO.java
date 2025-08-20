@@ -20,7 +20,7 @@ public class EliminaPrenotazioneDAO implements GenericProcedureDAO<Void> {
         try (Connection conn = ConnectionFactory.getConnection();
              CallableStatement cs = conn.prepareCall("{call agenziadiviaggi.cancellazionePrenotazione(?)}")) {
             cs.setString(1, codiceDisdetta);
-            cs.execute();
+            cs.executeQuery();
         } catch (SQLException e) {
             if (e.getMessage().equals("45000")) {
                 System.err.println(e.getMessage());

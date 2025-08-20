@@ -14,4 +14,13 @@ public class Autobus {
 
     public float getCostoForfettario() { return costoForfettario; }
     public void setCostoForfettario(float costoForfettario) { this.costoForfettario = costoForfettario; }
+
+    @Override
+    public String toString() {
+        return "Autobus{" +
+                "targa='" + targa + '\'' +
+                ", capienza=" + capienza +
+                ", costoForfettario=" + costoForfettario +
+                '}';
+    }
 }

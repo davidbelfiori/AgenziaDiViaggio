@@ -18,4 +18,14 @@ public class Itinerario {
 
     public String getNomeItinerario() { return nomeItinerario; }
     public void setNomeItinerario(String nomeItinerario) { this.nomeItinerario = nomeItinerario; }
+
+    @Override
+    public String toString() {
+       return "Itinerario{" +
+               "idItinerario=" + idItinerario +
+               ", durata=" + durata +
+               ", costo=" + costo +
+               ", nomeItinerario='" + nomeItinerario + '\'' +
+               '}';
+    }
 }

@@ -13,7 +13,6 @@ public class viaggiDisponibiliDAO implements GenericProcedureDAO{
     public Object execute(Object... params) throws DAOException, SQLException {
         try (Connection conn = ConnectionFactory.getConnection();
              CallableStatement cs = conn.prepareCall("{call agenziadiviaggi.visualizzaViaggiDisponibili()}")) {
-
             ResultSet rs = cs.executeQuery();
             int lastIdViaggio = -1;
             while (rs.next()) {
@@ -34,10 +33,13 @@ public class viaggiDisponibiliDAO implements GenericProcedureDAO{
                         ", Stato: " + rs.getString("StatoLocalita") +
                         ", Giorni: " + rs.getInt("Giorni"));
             }
+            cs.close();
+            conn.close();
         } catch (SQLException e) {
             System.out.println("Errore SQL: " + e.getMessage());
             throw new DAOException("Errore durante la visualizzazione dei viaggi disponibili", e);
         }
+
         return null;
     }
 }

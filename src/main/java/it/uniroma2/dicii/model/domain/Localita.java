@@ -18,4 +18,14 @@ public class Localita {
 
     public String getRegione() { return regione; }
     public void setRegione(String regione) { this.regione = regione; }
+
+    @Override
+    public String toString() {
+        return "Localita{" +
+                "nome='" + nome + '\'' +
+                ", stato='" + stato + '\'' +
+                ", provincia='" + provincia + '\'' +
+                ", regione='" + regione + '\'' +
+                '}';
+    }
 }

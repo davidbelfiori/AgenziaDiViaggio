@@ -24,4 +24,14 @@ public class Viaggio {
 
     public int getIdItinerario() { return idItinerario; }
     public void setIdItinerario(int idItinerario) { this.idItinerario = idItinerario; }
+
+    @Override
+    public String toString() {
+        return "Viaggio {\n" +
+                "  ID Viaggio: " + idViaggio + "\n" +
+                "  Data Partenza: " + dataPartenza + "\n" +
+                "  Data Rientro: " + dataRientro + "\n" +
+                "  ID Itinerario: " + idItinerario + "\n" +
+                '}';
+    }
 }

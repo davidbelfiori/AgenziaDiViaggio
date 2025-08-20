@@ -3,9 +3,8 @@ package it.uniroma2.dicii.view;
 import java.util.Scanner;
 
 public class SegreteriaView {
-    private final Scanner scanner = new Scanner(System.in);
 
-    public void mostraMenuPrincipale() {
+    public static int mostraMenuPrincipale() {
         System.out.println("╔════════════════════════════════════════════╗");
         System.out.println("║         Area Segreteria - Menu             ║");
         System.out.println("╠════════════════════════════════════════════╣");
@@ -18,9 +17,22 @@ public class SegreteriaView {
         System.out.println("║ 0. Esci                                    ║");
         System.out.println("╚════════════════════════════════════════════╝");
         System.out.print("Seleziona un'opzione: ");
+
+        Scanner input = new Scanner(System.in);
+        int choice = 0;
+        while (true) {
+            System.out.print("Seleziona un'opzione: ");
+            choice = input.nextInt();
+            if (choice >= 0 && choice <= 6) {
+                break;
+            }
+            System.out.println("Invalid option");
+        }
+
+        return choice;
     }
 
-    public void mostraSottoMenuViaggio() {
+    public static int mostraSottoMenuViaggio() {
         System.out.println("\n");
         System.out.println("╔════════════════════════════════════╗");
         System.out.println("║   Operazioni su Viaggio            ║");
@@ -31,9 +43,22 @@ public class SegreteriaView {
         System.out.println("║ 0. Torna al menu principale        ║");
         System.out.println("╚════════════════════════════════════╝");
         System.out.print("Seleziona un'opzione: ");
+
+        Scanner input = new Scanner(System.in);
+        int choice = 0;
+        while (true) {
+            System.out.print("Seleziona un'opzione: ");
+            choice = input.nextInt();
+            if (choice >= 0 && choice <= 3) {
+                break;
+            }
+            System.out.println("Invalid option");
+        }
+
+        return choice;
     }
 
-    public void mostraSottoMenuItinerario() {
+    public static int mostraSottoMenuItinerario() {
         System.out.println("\n");
         System.out.println("╔════════════════════════════════════╗");
         System.out.println("║   Gestione Itinerario Creato       ║");
@@ -42,24 +67,20 @@ public class SegreteriaView {
         System.out.println("║ 0. Torna al menu principale        ║");
         System.out.println("╚════════════════════════════════════╝");
         System.out.print("Seleziona un'opzione: ");
-    }
 
-    public int leggiScelta() {
-        int scelta = -1;
-        try {
-            scelta = Integer.parseInt(scanner.nextLine());
-        } catch (NumberFormatException e) {
-            System.out.println("Input non valido. Inserisci un numero.");
+        Scanner input = new Scanner(System.in);
+        int choice = 0;
+        while (true) {
+            System.out.print("Seleziona un'opzione: ");
+            choice = input.nextInt();
+            if (choice >= 0 && choice <= 1) {
+                break;
+            }
+            System.out.println("Invalid option");
         }
-        return scelta;
+
+        return choice;
     }
 
-    public String chiediInput(String prompt) {
-        System.out.print(prompt);
-        return scanner.nextLine();
-    }
 
-    public void mostraMessaggio(String messaggio) {
-        System.out.println(messaggio);
-    }
 }

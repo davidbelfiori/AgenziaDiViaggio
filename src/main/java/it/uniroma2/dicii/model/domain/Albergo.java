@@ -50,4 +50,18 @@ public class Albergo {
 
     public String getStato() { return stato; }
     public void setStato(String stato) { this.stato = stato; }
+
+    @Override
+    public String toString() {
+        return "Albergo {\n" +
+                "  Nome: " + nome + "\n" +
+                "  Capienza: " + capienza + "\n" +
+                "  Costo per Notte: " + costoPN + "\n" +
+                "  Referente: " + referente + "\n" +
+                "  Indirizzo: " + via + ", " + numero + ", " + cap + "\n" +
+                "  Località: " + nomeLocalita + ", " + stato + "\n" +
+                "  Email: " + email + "\n" +
+                "  Fax: " + fax + "\n" +
+                '}';
+    }
 }

@@ -13,20 +13,22 @@ public class InserisciPrenotazioneDAO implements GenericProcedureDAO {
     public Object execute(Object... params) throws DAOException, SQLException {
         if (params.length < 2)
             throw new DAOException("Parametri insufficienti per inserire la prenotazione");
-
         int numeroPartecipanti = (int) params[0];
         int idViaggio = (int) params[1];
+        String codiceDisdetta = null;
 
-        try {Connection conn = ConnectionFactory.getConnection();
-             CallableStatement cs = conn.prepareCall("{call inserisciPrenotazione(?, ?, ?)}") ;
+        try (Connection conn = ConnectionFactory.getConnection();
+             CallableStatement cs = conn.prepareCall("{call inserisciPrenotazione(?, ?, ?)}")) {
             cs.setInt(1, numeroPartecipanti);
             cs.setInt(2, idViaggio);
             cs.registerOutParameter(3, Types.VARCHAR);
-            cs.execute();
-            return cs.getString(3);
+            cs.executeQuery();
+            codiceDisdetta=cs.getString(3);
+            return  codiceDisdetta;
+
         } catch (SQLException e) {
             if(e.getMessage().equals("45000")){
-                System.err.println(e.getMessage());
+                System.err.println("Messaggio del sistema"+e.getMessage());
             }
             throw new DAOException(e.getMessage(), e);
         }
