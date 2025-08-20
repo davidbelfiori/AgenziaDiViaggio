@@ -6,6 +6,17 @@ public class Localita {
     private String provincia;
     private String regione;
 
+    public Localita(String nome, String stato, String provincia, String regione) {
+        this.nome = nome;
+        this.stato = stato;
+        this.provincia = provincia;
+        this.regione = regione;
+    }
+
+    public Localita() {
+
+    }
+
     // Getters and Setters
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
@@ -22,10 +33,10 @@ public class Localita {
     @Override
     public String toString() {
         return "Localita{" +
-                "nome='" + nome + '\'' +
-                ", stato='" + stato + '\'' +
-                ", provincia='" + provincia + '\'' +
-                ", regione='" + regione + '\'' +
+                "nome='" + nome + '\n' +
+                ", stato='" + stato + '\n' +
+                ", provincia='" + provincia + '\n' +
+                ", regione='" + regione + '\n' +
                 '}';
     }
 }

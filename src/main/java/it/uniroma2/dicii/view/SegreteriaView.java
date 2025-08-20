@@ -16,7 +16,6 @@ public class SegreteriaView {
         System.out.println("║ 6. Crea itinerario                         ║");
         System.out.println("║ 0. Esci                                    ║");
         System.out.println("╚════════════════════════════════════════════╝");
-        System.out.print("Seleziona un'opzione: ");
 
         Scanner input = new Scanner(System.in);
         int choice = 0;
@@ -42,8 +41,6 @@ public class SegreteriaView {
         System.out.println("║ 3. Associa autobus al viaggio      ║");
         System.out.println("║ 0. Torna al menu principale        ║");
         System.out.println("╚════════════════════════════════════╝");
-        System.out.print("Seleziona un'opzione: ");
-
         Scanner input = new Scanner(System.in);
         int choice = 0;
         while (true) {
@@ -66,8 +63,6 @@ public class SegreteriaView {
         System.out.println("║ 1. Aggiungi tappa (località)       ║");
         System.out.println("║ 0. Torna al menu principale        ║");
         System.out.println("╚════════════════════════════════════╝");
-        System.out.print("Seleziona un'opzione: ");
-
         Scanner input = new Scanner(System.in);
         int choice = 0;
         while (true) {

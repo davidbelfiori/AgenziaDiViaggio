@@ -22,4 +22,15 @@ public class Tappa {
 
     public Integer getGiorni() { return giorni; }
     public void setGiorni(Integer giorni) { this.giorni = giorni; }
+
+    @Override
+    public String toString() {
+        return "Tappa {\n" +
+                "  idItinerario = " + idItinerario + ",\n" +
+                "  nomeLocalita = '" + nomeLocalita + "',\n" +
+                "  stato = '" + stato + "',\n" +
+                "  ordine = " + ordine + ",\n" +
+                "  giorni = " + giorni + "\n" +
+                '}';
+    }
 }

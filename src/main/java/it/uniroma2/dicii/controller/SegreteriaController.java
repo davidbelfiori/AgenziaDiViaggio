@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.SQLData;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class SegreteriaController implements Controller {
@@ -80,8 +81,7 @@ public class SegreteriaController implements Controller {
             System.out.println("Itinerario inserito con successo"+ itinerarioInserito.toString());
             while(true){
                 int choice;
-                choice = SegreteriaView.mostraMenuPrincipale();
-
+                choice = SegreteriaView.mostraSottoMenuItinerario();
                 switch (choice) {
                     case 1 -> aggiungiTappaItinerario(itinerarioInserito.getIdItinerario());
                     case 0 -> {
@@ -98,7 +98,40 @@ public class SegreteriaController implements Controller {
 
     private void aggiungiTappaItinerario(int idItnerario) {
 
-        System.out.println("prova");
+        //Faccio visualizzare le località disponibili
+        System.out.println("Visualizzazione delle località disponibili:");
+        List<Localita> loocalita = new LocalitaDisponibiliDAO().execute();
+        if (loocalita.isEmpty()) {
+            System.out.println("Nessuna località disponibile. Inserisci prima una località.");
+            return;
+        }else{
+            System.out.println("Località disponibili:");
+            System.out.println("Località disponibili:");
+            for (Localita l : loocalita) {
+                System.out.println(l.toString());
+            }
+        }
+
+        //Inserimento della tappa
+        Tappa tappa = new Tappa();
+        tappa.setIdItinerario(idItnerario);
+        input.nextLine(); // Consuma il newline rimasto dopo l'input precedente
+        System.out.print("Inserisci il nome della località della tappa: ");
+        tappa.setNomeLocalita(input.nextLine());
+        System.out.println("Inserisi lo stato della località della tappa: ");
+        tappa.setStato(input.nextLine());
+        System.out.print("Inserisci il numero di notti per la tappa: ");
+        tappa.setGiorni(input.nextInt());
+        System.out.println("Inserisci l'ordine della tappa (1 per la prima tappa, 2 per la seconda, etc.): ");
+        tappa.setOrdine(input.nextInt());
+
+        try {
+            Tappa tappaInserita = new InserisciTappaItinerarioDAO().execute(tappa);
+            System.out.println("Tappa inserita con successo: " + tappaInserita.toString());
+        } catch (DAOException | SQLException e) {
+            System.out.println("Errore durante l'inserimento della tappa: " + e.getMessage());
+        }
+
 
     }
 
@@ -222,7 +255,6 @@ public class SegreteriaController implements Controller {
         viaggio.setDataPartenza(dataPartenza);
 
         try {
-
             Viaggio viaggioInserito = new InserisciViaggioDAO().execute(viaggio);
             System.out.println("Viaggio inserito con successo: " + viaggioInserito.toString());
         } catch (DAOException | SQLException e) {
