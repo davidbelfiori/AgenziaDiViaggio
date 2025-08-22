@@ -112,7 +112,7 @@ public class SegreteriaController implements Controller {
         try {
             ItinerarioConTappe itinerario = new ItinerarioDelViaggioDAO().execute(idViaggio);
             System.out.println("Itinerario del viaggio:");
-            System.out.println("=== Itinerario ===");
+            System.out.println("====== Itinerario ======");
             System.out.println("ID: " + itinerario.getIdItinerario());
             System.out.println("Nome: " + itinerario.getNomeItinerario());
             System.out.println("Durata: " + itinerario.getDurata() + " giorni");
@@ -127,15 +127,17 @@ public class SegreteriaController implements Controller {
                 System.out.println("    Giorni: " + tappa.getGiorni());
             }
             System.out.println("==================");
+            int j = 1;
             for (Tappa tappa : itinerario.getTappe()) {
 
-                System.out.println("  Tappa " + i++ + ":");
+                System.out.println("======"+"Tappa " + j++ + "======");
                 System.out.println("    Località: " + tappa.getNomeLocalita());
                 System.out.println("    Stato: " + tappa.getStato());
                 System.out.println("    Ordine: " + tappa.getOrdine());
                 System.out.println("    Giorni: " + tappa.getGiorni());
+                System.out.println("==================");
                 //Faccio visualizzare gli alberghi disponibili per la località della tappa
-                System.out.println("Visualizzazione degli alberghi disponibili per la località della tappa:");
+                System.out.println("======Visualizzazione degli alberghi disponibili per la località della tappa"+tappa.getNomeLocalita()+"======");
                 try {
 
                     List<Albergo> albergoList = new AlberghiPerLocalitaDAO().execute(idViaggio,tappa.getNomeLocalita(), tappa.getStato());
