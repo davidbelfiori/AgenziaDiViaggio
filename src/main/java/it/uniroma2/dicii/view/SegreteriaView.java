@@ -14,6 +14,7 @@ public class SegreteriaView {
         System.out.println("║ 4. Inserisci albergo                       ║");
         System.out.println("║ 5. Operazioni su un viaggio specifico      ║");
         System.out.println("║ 6. Crea itinerario                         ║");
+        System.out.println("║ 7. Visalizza viaggi                        ║");
         System.out.println("║ 0. Esci                                    ║");
         System.out.println("╚════════════════════════════════════════════╝");
 
@@ -22,7 +23,7 @@ public class SegreteriaView {
         while (true) {
             System.out.print("Seleziona un'opzione: ");
             choice = input.nextInt();
-            if (choice >= 0 && choice <= 6) {
+            if (choice >= 0 && choice <= 7) {
                 break;
             }
             System.out.println("Invalid option");

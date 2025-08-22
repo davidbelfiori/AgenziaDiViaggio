@@ -33,34 +33,158 @@ public class SegreteriaController implements Controller {
                 case 4 -> inserisciAlbergo();
                 case 5 -> operazioniViaggio();
                 case 6 -> creaItinerario();
+                case 7-> visualizzaViaggiDisponibili();
                 case 0 -> System.exit(0);
                 default -> throw new RuntimeException("Invalid choice");
             }
         }
     }
 
-    private void operazioniViaggio() {
-        int choice;
-        choice = SegreteriaView.mostraSottoMenuViaggio();
-
-        switch (choice) {
-            case 1 -> generaReport();
-            case 2 -> associaPernottamento();
-            case 3 -> associaAutobus();
-            case 0 -> {
-                return;
-            }
-            default -> throw new RuntimeException("Invalid choice");
+    public void visualizzaViaggiDisponibili() {
+        try {
+            new AllViaggiDisponibiliDAO().execute();
+        } catch (Exception e) {
+            System.out.println("Errore: " + e.getMessage());
         }
     }
 
-    private void associaAutobus() {
+    private void operazioniViaggio() {
+
+        System.out.println("inserisci l'id del viaggio su cui vuoi effettuare operazioni: ");
+        int idViaggio = input.nextInt();
+        input.nextLine(); // Consuma il newline rimasto dopo l'input precedente
+        //Controllo se il viaggio esiste
+        Viaggio viaggio = null;
+        try {
+            viaggio = new VerificaEsistenzaViaggioDAO().execute(idViaggio);
+        } catch (DAOException e) {
+            System.out.println("Errore durante il recupero del viaggio: " + e.getMessage());
+            return;
+        }
+
+        while (true) {
+            int choice;
+            choice = SegreteriaView.mostraSottoMenuViaggio();
+
+            switch (choice) {
+                case 1 -> generaReport(idViaggio);
+                case 2 -> associaPernottamento(idViaggio);
+                case 3 -> associaAutobus(idViaggio);
+                case 0 -> {
+                    return;
+                }
+                default -> throw new RuntimeException("Invalid choice");
+            }
+        }
     }
 
-    private void associaPernottamento() {
+    private void associaAutobus(int idViaggio) {
+
+        //Faccio visualizzare gli autobus disponibili
+        System.out.println("Visualizzazione degli autobus disponibili:");
+
+        try {
+            List<Autobus> autobusList = new AutobusDisponibiliDAO().execute(idViaggio);
+            for (Autobus a : autobusList) {
+                System.out.println(a.toString());
+            }
+        }catch (DAOException | SQLException e) {
+            System.out.println("Errore durante la visualizzazione degli autobus: " + e.getMessage());
+        }
+
+        AutobusViaggio autobusViaggio = new AutobusViaggio();
+        autobusViaggio.setCodiceViaggio(idViaggio);
+        System.out.print("Inserisci la targa dell'autobus da associare al viaggio: ");
+        autobusViaggio.setTarga(input.nextLine());
+
+        try {
+            AssociazioneAutobusViaggioResult autobusAssociato = new AssociaAutobusViaggioDAO().execute(autobusViaggio);
+            System.out.println("Autobus associato al viaggio con successo: " + autobusAssociato.toString());
+        } catch (DAOException | SQLException e) {
+            System.out.println("Errore durante l'associazione dell'autobus al viaggio: " + e.getMessage());
+        }
+
     }
 
-    private void generaReport() {
+    private void associaPernottamento(int idViaggio) {
+
+        //Mostro l'itinerario del viaggio
+        try {
+            ItinerarioConTappe itinerario = new ItinerarioDelViaggioDAO().execute(idViaggio);
+            System.out.println("Itinerario del viaggio:");
+            System.out.println("=== Itinerario ===");
+            System.out.println("ID: " + itinerario.getIdItinerario());
+            System.out.println("Nome: " + itinerario.getNomeItinerario());
+            System.out.println("Durata: " + itinerario.getDurata() + " giorni");
+            System.out.println("Costo: " + itinerario.getCosto() + " €");
+            System.out.println("Tappe:");
+            int i = 1;
+            for (Tappa tappa : itinerario.getTappe()) {
+                System.out.println("  Tappa " + i++ + ":");
+                System.out.println("    Località: " + tappa.getNomeLocalita());
+                System.out.println("    Stato: " + tappa.getStato());
+                System.out.println("    Ordine: " + tappa.getOrdine());
+                System.out.println("    Giorni: " + tappa.getGiorni());
+            }
+            System.out.println("==================");
+            for (Tappa tappa : itinerario.getTappe()) {
+
+                System.out.println("  Tappa " + i++ + ":");
+                System.out.println("    Località: " + tappa.getNomeLocalita());
+                System.out.println("    Stato: " + tappa.getStato());
+                System.out.println("    Ordine: " + tappa.getOrdine());
+                System.out.println("    Giorni: " + tappa.getGiorni());
+                //Faccio visualizzare gli alberghi disponibili per la località della tappa
+                System.out.println("Visualizzazione degli alberghi disponibili per la località della tappa:");
+                try {
+
+                    List<Albergo> albergoList = new AlberghiPerLocalitaDAO().execute(idViaggio,tappa.getNomeLocalita(), tappa.getStato());
+                    if (albergoList.isEmpty()) {
+                        System.out.println("Nessun albergo disponibile per la località " + tappa.getNomeLocalita() + ", " + tappa.getStato());
+                        continue;
+                    } else {
+                        for (Albergo albergo : albergoList) {
+                            System.out.println("=== Albergo ===");
+                            System.out.println("ID: " + albergo.getCodiceAlbergo());
+                            System.out.println("Nome: " + albergo.getNome());
+                            System.out.println("Capienza: " + albergo.getCapienza());
+                            System.out.println("Costo per notte: " + albergo.getCostoPN() + " €");
+                            System.out.println("Referente: " + albergo.getReferente());
+                            System.out.println("Via: " + albergo.getVia() + ", Numero: " + albergo.getNumero());
+                            System.out.println("CAP: " + albergo.getCap());
+                            System.out.println("Email: " + albergo.getEmail());
+                            System.out.println("Fax: " + albergo.getFax());
+                            System.out.println("Località: " + albergo.getNomeLocalita());
+                            System.out.println("Stato: " + albergo.getStato());
+                            System.out.println("================");
+                        }
+                        System.out.print("Inserisci il codice dell'albergo da associare alla tappa: ");
+                        int codiceAlbergo = input.nextInt();
+                        new AssociaPernottamentoDAO().execute(idViaggio, codiceAlbergo);
+                    }
+                }catch (DAOException e) {
+                    System.out.println("Errore durante la visualizzazione degli alberghi: " + e.getMessage());
+                }
+
+
+            }
+        } catch (DAOException | SQLException e) {
+            System.out.println("Errore durante il recupero dell'itinerario del viaggio: " + e.getMessage());
+            return;
+        }
+
+
+    }
+
+    private void generaReport(int idViaggio) {
+        try {
+            new GeneraReportViaggioDAO().execute(idViaggio);
+        } catch (DAOException | SQLException e) {
+            System.out.println("Errore durante la generazione del report: " + e.getMessage());
+        }
+
+
+
     }
 
     private void creaItinerario() {

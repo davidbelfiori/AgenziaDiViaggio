@@ -7,8 +7,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class viaggiDisponibiliDAO implements GenericProcedureDAO{
-
+public class AllViaggiDisponibiliDAO implements  GenericProcedureDAO{
     @Override
     public Object execute(Object... params) throws DAOException, SQLException {
         try (Connection conn = ConnectionFactory.getConnection();
@@ -18,9 +17,6 @@ public class viaggiDisponibiliDAO implements GenericProcedureDAO{
             while (rs.next()) {
                 String statoViaggio = rs.getString("Stato");
                 int idViaggio = rs.getInt("IDViaggio");
-                if (!"PROGRAMMATO".equalsIgnoreCase(statoViaggio)) {
-                    continue;
-                }
                 if (idViaggio != lastIdViaggio) {
                     // Stampa intestazione viaggio
                     System.out.println("\n-----------------------------");

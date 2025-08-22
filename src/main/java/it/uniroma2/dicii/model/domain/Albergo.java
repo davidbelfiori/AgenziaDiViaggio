@@ -14,6 +14,24 @@ public class Albergo {
     private String nomeLocalita;
     private String stato;
 
+    public Albergo() {
+    }
+
+    public Albergo(int codiceAlbergo, String nome, int capienza, float costoPN, String referente, String via, String numero, String cap, String email, String fax, String nomeLocalita, String stato) {
+        this.codiceAlbergo = codiceAlbergo;
+        this.nome = nome;
+        this.capienza = capienza;
+        this.costoPN = costoPN;
+        this.referente = referente;
+        this.via = via;
+        this.numero = numero;
+        this.cap = cap;
+        this.email = email;
+        this.fax = fax;
+        this.nomeLocalita = nomeLocalita;
+        this.stato = stato;
+    }
+
     // Getters and Setters
     public int getCodiceAlbergo() { return codiceAlbergo; }
     public void setCodiceAlbergo(int codiceAlbergo) { this.codiceAlbergo = codiceAlbergo; }
