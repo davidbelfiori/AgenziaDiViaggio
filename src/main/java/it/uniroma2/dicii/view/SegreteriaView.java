@@ -22,7 +22,13 @@ public class SegreteriaView {
         int choice = 0;
         while (true) {
             System.out.print("Seleziona un'opzione: ");
-            choice = input.nextInt();
+            try {
+                choice = input.nextInt();
+            } catch (Exception e) {
+                System.out.println("Invalid option");
+                input.next(); // clear the invalid input
+                continue;
+            }
             if (choice >= 0 && choice <= 7) {
                 break;
             }
@@ -46,7 +52,13 @@ public class SegreteriaView {
         int choice = 0;
         while (true) {
             System.out.print("Seleziona un'opzione: ");
-            choice = input.nextInt();
+            try {
+                choice = input.nextInt();
+            } catch (Exception e) {
+                System.out.println("Invalid option");
+                input.next(); // clear the invalid input
+                continue;
+            }
             if (choice >= 0 && choice <= 3) {
                 break;
             }
@@ -68,11 +80,16 @@ public class SegreteriaView {
         int choice = 0;
         while (true) {
             System.out.print("Seleziona un'opzione: ");
-            choice = input.nextInt();
+            try {
+                choice = input.nextInt();
+            } catch (Exception e) {
+                System.out.println("Invalid option");
+                input.next(); // clear the invalid input
+                continue;
+            }
             if (choice >= 0 && choice <= 1) {
                 break;
             }
-            System.out.println("Invalid option");
         }
 
         return choice;

@@ -5,10 +5,7 @@ import it.uniroma2.dicii.model.dao.*;
 import it.uniroma2.dicii.model.domain.*;
 import it.uniroma2.dicii.view.SegreteriaView;
 
-import java.sql.Connection;
-import java.sql.SQLData;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,13 +14,13 @@ public class SegreteriaController implements Controller {
 
     @Override
     public void start() {
-
-
+        // Cambia il ruolo della connessione a SEGRETERIA
         ConnectionFactory.changeRole(Role.SEGRETERIA);
         System.out.println("Welcome to the segreteria Controller!");
 
         while(true){
             int choice;
+            // Mostra il menu principale
             choice = SegreteriaView.mostraMenuPrincipale();
 
             switch (choice) {
@@ -40,6 +37,7 @@ public class SegreteriaController implements Controller {
         }
     }
 
+    // Visualizza tutti i viaggi
     public void visualizzaViaggiDisponibili() {
         try {
             new AllViaggiDisponibiliDAO().execute();
@@ -48,11 +46,11 @@ public class SegreteriaController implements Controller {
         }
     }
 
+    // Menu per operazioni su un viaggio specifico (selezionato tramite ID)
     private void operazioniViaggio() {
 
         System.out.println("inserisci l'id del viaggio su cui vuoi effettuare operazioni: ");
         int idViaggio = input.nextInt();
-        input.nextLine(); // Consuma il newline rimasto dopo l'input precedente
         //Controllo se il viaggio esiste
         Viaggio viaggio = null;
         try {
@@ -78,12 +76,14 @@ public class SegreteriaController implements Controller {
         }
     }
 
+    // Associa un autobus a un viaggio
     private void associaAutobus(int idViaggio) {
 
         //Faccio visualizzare gli autobus disponibili
         System.out.println("Visualizzazione degli autobus disponibili:");
 
         try {
+            // chiamo la classe DAO associata per ottenere gli autobus disponibili
             List<Autobus> autobusList = new AutobusDisponibiliDAO().execute(idViaggio);
             for (Autobus a : autobusList) {
                 System.out.println(a.toString());
@@ -165,7 +165,7 @@ public class SegreteriaController implements Controller {
                         new AssociaPernottamentoDAO().execute(idViaggio, codiceAlbergo);
                     }
                 }catch (DAOException e) {
-                    System.out.println("Errore durante la visualizzazione degli alberghi: " + e.getMessage());
+                    System.out.println("Errore durante l'inserimento del pernottamento: " + e.getMessage());
                 }
 
 
@@ -232,9 +232,13 @@ public class SegreteriaController implements Controller {
             return;
         }else{
             System.out.println("Località disponibili:");
-            System.out.println("Località disponibili:");
             for (Localita l : loocalita) {
-                System.out.println(l.toString());
+                System.out.println("--------------------");
+                System.out.println("Località: " + l.getNome());
+                System.out.println("Stato: " + l.getStato());
+                System.out.println("Provincia: " + l.getProvincia());
+                System.out.println("Regione: " + l.getRegione());
+                System.out.println("--------------------");
             }
         }
 
@@ -274,9 +278,9 @@ public class SegreteriaController implements Controller {
         }
         System.out.print("Inserisci il costo per notte: ");
         albergo.setCostoPN( Float.parseFloat(input.nextLine()));
-        System.out.print("Inserisci il reference dell'albergo: ");
+        System.out.print("Inserisci il referente dell'albergo: ");
         albergo.setReferente(input.nextLine());
-        System.out.print("Inserisci la via dell'albergo: ");
+        System.out.print("Inserisci la via dell'albergo (senza numero civico): ");
         albergo.setVia(input.nextLine());
         System.out.print("Inserisci il numero civico dell'albergo: ");
         albergo.setNumero(input.nextLine());
