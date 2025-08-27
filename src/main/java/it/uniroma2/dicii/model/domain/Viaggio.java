@@ -27,11 +27,10 @@ public class Viaggio {
 
     @Override
     public String toString() {
-        return "Viaggio {\n" +
+        return  "\n"+
                 "  ID Viaggio: " + idViaggio + "\n" +
                 "  Data Partenza: " + dataPartenza + "\n" +
                 "  Data Rientro: " + dataRientro + "\n" +
-                "  ID Itinerario: " + idItinerario + "\n" +
-                '}';
+                "  ID Itinerario: " + idItinerario + "\n" ;
     }
 }

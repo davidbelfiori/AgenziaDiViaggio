@@ -25,12 +25,11 @@ public class Tappa {
 
     @Override
     public String toString() {
-        return "Tappa {\n" +
-                "  idItinerario = " + idItinerario + ",\n" +
+        return
+                "  IDItinerario = " + idItinerario + ",\n" +
                 "  nomeLocalita = '" + nomeLocalita + "',\n" +
-                "  stato = '" + stato + "',\n" +
-                "  ordine = " + ordine + ",\n" +
-                "  giorni = " + giorni + "\n" +
-                '}';
+                "  stato = '" + stato + "'\n" +
+                "  ordine = " + ordine + "\n" +
+                "  giorni = " + giorni + "\n" ;
     }
 }

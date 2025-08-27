@@ -22,9 +22,9 @@ public class EliminaPrenotazioneDAO implements GenericProcedureDAO<Void> {
             cs.setString(1, codiceDisdetta);
             cs.executeQuery();
         } catch (SQLException e) {
-            if (e.getMessage().equals("45000")) {
-                System.err.println(e.getMessage());
-            }
+//            if (e.getMessage().equals("45000")) {
+//                System.err.println(e.getMessage());
+//            }
             throw new DAOException(e.getMessage(), e);
         }
         return null;

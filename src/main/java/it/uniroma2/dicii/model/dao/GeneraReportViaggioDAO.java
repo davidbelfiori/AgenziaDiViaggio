@@ -18,9 +18,9 @@ public class GeneraReportViaggioDAO implements GenericProcedureDAO{
             String report = cs.getString(2);
             System.out.println(report);
         } catch (SQLException e) {
-            if (e.getMessage().equals("45000")) {
-                System.err.println("Messaggio del sistema: " + e.getMessage());
-            }
+//            if (e.getMessage().equals("45000")) {
+//                System.err.println("Messaggio del sistema: " + e.getMessage());
+//            }
             throw new DAOException(e.getMessage(), e);
         }
         return null;

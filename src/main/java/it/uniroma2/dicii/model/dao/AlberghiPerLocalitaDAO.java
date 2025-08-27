@@ -42,7 +42,7 @@ public class AlberghiPerLocalitaDAO implements GenericProcedureDAO<List<Albergo>
                     alberghi.add(albergo);
                 }
 
-        }catch ( SQLException e) {
+        }catch (SQLException e) {
             throw new DAOException(e.getMessage(), e);
         }
         return alberghi;

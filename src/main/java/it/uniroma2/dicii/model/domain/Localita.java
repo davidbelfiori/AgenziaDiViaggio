@@ -32,11 +32,10 @@ public class Localita {
 
     @Override
     public String toString() {
-        return "Localita{" +
-                "nome='" + nome + '\n' +
-                ", stato='" + stato + '\n' +
-                ", provincia='" + provincia + '\n' +
-                ", regione='" + regione + '\n' +
-                '}';
+        return  "\n"+
+                "Nome='" + nome + '\n' +
+                "Stato='" + stato + '\n' +
+                "Provincia='" + provincia + '\n' +
+                "Regione='" + regione + '\n';
     }
 }

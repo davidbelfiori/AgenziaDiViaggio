@@ -33,9 +33,9 @@ public class InserisciAlbergoDAO implements GenericProcedureDAO<Albergo> {
                     cs.setString(11, albergo.getStato());
                     cs.executeQuery();
                 }catch (SQLException e) {
-                    if (e.getMessage().equals("45000")) {
-                        System.err.println("Messaggio del sistema: " + e.getMessage());
-                    }
+//                    if (e.getMessage().equals("45000")) {
+//                        System.err.println("Messaggio del sistema: " + e.getMessage());
+//                    }
                     throw new DAOException(e.getMessage(), e);
 
                 }

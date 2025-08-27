@@ -21,11 +21,10 @@ public class Itinerario {
 
     @Override
     public String toString() {
-       return "Itinerario{" +
-               "idItinerario=" + idItinerario +
-               ", durata=" + durata +
-               ", costo=" + costo +
-               ", nomeItinerario='" + nomeItinerario + '\'' +
-               '}';
+       return  "\n"+
+               "IDItinerario=" + idItinerario + "\n" +
+               "Durata=" + durata +"\n" +
+               "Costo=" + costo +"\n" +
+               "NomeItinerario='" + nomeItinerario ;
     }
 }

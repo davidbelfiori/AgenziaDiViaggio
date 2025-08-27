@@ -23,9 +23,9 @@ public class InserisciViaggioDAO implements GenericProcedureDAO<Viaggio> {
             viaggioInserito.setDataRientro(cs.getDate(4));
             return viaggioInserito;
         } catch (SQLException e) {
-            if (e.getMessage().equals("45000")) {
-                System.err.println("Messaggio del sistema: " + e.getMessage());
-            }
+//            if (e.getMessage().equals("45000")) {
+//                System.err.println("Messaggio del sistema: " + e.getMessage());
+//            }
             throw new DAOException(e.getMessage(), e);
         }
 

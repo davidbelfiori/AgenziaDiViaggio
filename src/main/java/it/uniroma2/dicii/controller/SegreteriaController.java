@@ -367,7 +367,7 @@ public class SegreteriaController implements Controller {
         Viaggio viaggio = new Viaggio();
         System.out.print("Inserisci l'id dell'itinerario da utilizzare: ");
         viaggio.setIdItinerario(input.nextInt());
-
+        input.nextLine(); // Consuma il newline rimasto dopo l'input precedente
         //inserimento della data di partenza
         java.sql.Date dataPartenza = null;
         while (dataPartenza == null) {

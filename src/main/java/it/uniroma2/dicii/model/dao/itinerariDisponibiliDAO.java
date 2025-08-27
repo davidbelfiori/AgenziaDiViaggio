@@ -35,7 +35,8 @@ public class itinerariDisponibiliDAO implements  GenericProcedureDAO{
                 String localita = rs.getString("NomeLocalita");
                 String stato = rs.getString("Stato");
                 int ordine = rs.getInt("Ordine");
-                tappe.append("  ").append(ordine).append(". ").append(localita).append(" (").append(stato).append(")\n");
+                int giorni = rs.getInt("Giorni");
+                tappe.append("  ").append(ordine).append(". ").append(localita).append(" (").append(stato).append(")  ").append("Giorni: ").append(giorni).append("\n");
             }
             // Stampa l'ultimo itinerario
             if (lastId != -1) {

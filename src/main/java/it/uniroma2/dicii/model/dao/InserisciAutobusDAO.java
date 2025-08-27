@@ -19,9 +19,9 @@ public class InserisciAutobusDAO implements GenericProcedureDAO<Autobus> {
                 cs.setFloat(3, autobus.getCostoForfettario());
                 cs.executeQuery();
             } catch (SQLException e) {
-                if (e.getMessage().equals("45000")) {
-                    System.err.println("Messaggio del sistema: " + e.getMessage());
-                }
+//                if (e.getMessage().equals("45000")) {
+//                    System.err.println("Messaggio del sistema: " + e.getMessage());
+//                }
                 throw new DAOException(e.getMessage(), e);
             }
         }

@@ -22,8 +22,9 @@ public class AgenteView {
         int choice = 0;
         while (true) {
             System.out.print("Seleziona un'opzione: ");
+
             choice = input.nextInt();
-            if (choice >= 0 && choice <= 4) {
+            if (choice >= 0 && choice <= 3) {
                 break;
             }
             System.out.println("Invalid option");

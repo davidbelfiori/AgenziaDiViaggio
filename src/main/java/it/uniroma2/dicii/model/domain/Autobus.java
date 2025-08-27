@@ -17,10 +17,9 @@ public class Autobus {
 
     @Override
     public String toString() {
-        return "Autobus{" + '\n' +
-                "targa='" + targa + '\n' +
-                ", capienza=" + capienza + '\n' +
-                ", costoForfettario=" + costoForfettario + '\n' +
-                '}';
+        return "\n"+
+                "Targa='" + targa + '\n' +
+                "Capienza=" + capienza + '\n' +
+                "Costo Forfettario al giorno=" + costoForfettario;
     }
 }

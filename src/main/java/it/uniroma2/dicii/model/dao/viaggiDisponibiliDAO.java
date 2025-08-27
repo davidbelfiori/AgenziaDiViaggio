@@ -27,6 +27,7 @@ public class viaggiDisponibiliDAO implements GenericProcedureDAO{
                     System.out.println("ID Viaggio: " + idViaggio);
                     System.out.println("Itinerario: " + rs.getString("NomeItinerario"));
                     System.out.println("Data partenza: " + rs.getDate("DataPartenza"));
+                    System.out.println("Costo: " + rs.getDouble("Costo"));
                     System.out.println("Stato: " + rs.getString("Stato"));
                     System.out.println("Tappe:");
                     lastIdViaggio = idViaggio;

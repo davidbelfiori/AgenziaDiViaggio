@@ -56,14 +56,13 @@ public class AgenteController implements Controller {
 
             System.out.print("Inserisci il codice di disdetta della prenotazione da cancellare: ");
             String codiceDisdetta = input.nextLine();
-
             try {
                 new EliminaPrenotazioneDAO().execute(codiceDisdetta);
                 System.out.println("Prenotazione eliminata con successo.");
             } catch (DAOException e) {
-                System.out.println("Errore: " + e.getMessage());
+                System.err.println("Errore: " + e.getMessage());
             } catch (SQLException e) {
-                System.out.println("Errore SQL: " + e.getMessage());
+                System.err.println("Errore SQL: " + e.getMessage());
             }
         }
 
@@ -73,7 +72,7 @@ public class AgenteController implements Controller {
       try {
           new viaggiDisponibiliDAO().execute();
       } catch (Exception e) {
-           System.out.println(e.getMessage());
+           System.err.println(e.getMessage());
            return;
       }
         int idViaggio;
@@ -87,9 +86,9 @@ public class AgenteController implements Controller {
             CodiceDisdetta = (String) new  InserisciPrenotazioneDAO().execute(numeroPasseggeri, idViaggio);
             System.out.println("Prenotazione inserita con successo! Codice disdetta: " + CodiceDisdetta);
         } catch (DAOException e) {
-            System.out.println("Errore: " + e.getMessage());
+            System.err.println("Errore: " + e.getMessage());
         } catch (SQLException e) {
-            System.out.println("Errore SQL: " + e.getMessage());
+            System.err.println("Errore SQL: " + e.getMessage());
         }
     }
 }

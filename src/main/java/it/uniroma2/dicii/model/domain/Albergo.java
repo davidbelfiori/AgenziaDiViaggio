@@ -71,7 +71,7 @@ public class Albergo {
 
     @Override
     public String toString() {
-        return "Albergo {\n" +
+        return  "\n"+
                 "  Nome: " + nome + "\n" +
                 "  Capienza: " + capienza + "\n" +
                 "  Costo per Notte: " + costoPN + "\n" +
@@ -79,7 +79,7 @@ public class Albergo {
                 "  Indirizzo: " + via + ", " + numero + ", " + cap + "\n" +
                 "  Località: " + nomeLocalita + ", " + stato + "\n" +
                 "  Email: " + email + "\n" +
-                "  Fax: " + fax + "\n" +
-                '}';
+                "  Fax: " + fax + "\n";
+
     }
 }

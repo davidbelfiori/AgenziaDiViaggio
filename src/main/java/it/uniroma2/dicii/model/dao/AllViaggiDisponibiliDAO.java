@@ -34,7 +34,6 @@ public class AllViaggiDisponibiliDAO implements  GenericProcedureDAO{
                         ", Giorni: " + rs.getInt("Giorni"));
             }
         } catch (SQLException e) {
-            System.out.println("Errore SQL: " + e.getMessage());
             throw new DAOException("Errore durante la visualizzazione dei viaggi disponibili", e);
         }
 
