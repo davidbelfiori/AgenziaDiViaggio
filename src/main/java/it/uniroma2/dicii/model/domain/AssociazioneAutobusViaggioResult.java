@@ -17,10 +17,9 @@ public class AssociazioneAutobusViaggioResult {
 
     @Override
     public String toString() {
-        return "AssociazioneAutobusViaggioResult{" +
-                "targa='" + targa + '\n' +
-                ", codiceViaggio=" + codiceViaggio + '\n' +
-                ", messaggio='" + messaggio + '\n' +
-                '}';
+        return '\n' +
+                "Targa='" + targa + '\n' +
+                "Codice Viaggio=" + codiceViaggio + '\n' +
+                "Messaggio='" + messaggio;
     }
 }
